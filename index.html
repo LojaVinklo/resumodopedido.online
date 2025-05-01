@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Resumo do Pedido - Vinklo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f3fc;
+      margin: 0;
+      padding: 0;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulsar {
+      0% { transform: scale(1); box-shadow: 0 0 0 rgba(142,36,170, 0.4); }
+      50% { transform: scale(1.05); box-shadow: 0 0 12px rgba(208,92,227, 0.6); }
+      100% { transform: scale(1); box-shadow: 0 0 0 rgba(142,36,170, 0.4); }
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .header {
+      background-color: #8e24aa;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header img {
+      height: 40px;
+    }
+    .header span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .progress-bar {
+      display: flex;
+      justify-content: center;
+      background: #f0d6f7;
+      padding: 10px;
+    }
+    .progress-bar span {
+      padding: 8px 16px;
+      background: #8e24aa;
+      color: white;
+      margin: 0 5px;
+      border-radius: 20px;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .label {
+      font-weight: bold;
+      color: #444;
+    }
+
+    .produto {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .produto img {
+      height: 80px;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    .produto img:hover {
+      transform: scale(1.05);
+    }
+
+    .preco {
+      color: #8e24aa;
+      font-weight: bold;
+    }
+
+    .metodo-pagamento {
+      margin-top: 40px;
+    }
+
+    .opcoes {
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .opcoes input[type="radio"] {
+      display: none;
+    }
+
+    .opcoes img {
+      height: 50px;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      transition: transform 0.3s ease, border 0.3s ease;
+    }
+
+    .opcoes input[type="radio"]:checked + img {
+      border: 2px solid #8e24aa;
+    }
+
+    .aprovacao {
+      font-size: 12px;
+      color: #555;
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-finalizar {
+      background: linear-gradient(135deg, #8e24aa, #d05ce3);
+      box-shadow: 0 4px 12px rgba(142,36,170,0.4);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 30px;
+      animation: pulsar 2s infinite ease-in-out;
+    }
+
+    .loader {
+      display: none;
+      margin-top: 20px;
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #8e24aa;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+
+    .center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo-container">
+      <img src="Design_sem_nome-removebg-preview.png" alt="Logo Vinklo" />
+      <span>Vinklo</span>
+    </div>
+    <strong>Caixa</strong>
+  </div>
+
+  <div class="progress-bar">
+    <span>1. Endereço</span>
+    <span style="background:#6a1b9a;">2. Confirmação</span>
+    <span style="background:#d1a3e6;">3. Pagamento</span>
+  </div>
+
+  <div class="container">
+    <h2>Resumo do Pedido</h2>
+
+    <div class="section">
+      <p class="label">Produto:</p>
+      <div class="produto">
+        <img src="panela.jpg" alt="Panela Philco" />
+        <div>
+          <p>Panela de Pressão Elétrica Philco 6L Digital</p>
+          <p id="voltagem">Voltagem: 110V</p>
+          <p>Cor: Preto</p>
+          <p class="preco">Preço: R$189,90</p>
+          <div class="metodo-pagamento">
+            <p class="label">Método de pagamento:</p>
+            <div class="opcoes">
+              <label><input type="radio" name="pagamento" checked /><img src="play_store-removebg-preview.png" alt="Google" /><div class="aprovacao">⚠️ Aprovação imediata</div></label>
+              <label><input type="radio" name="pagamento" /><img src="pix.PNG" alt="Pix" /></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="center">
+      <button class="btn-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+      <div class="loader" id="loader"></div>
+    </div>
+  </div>
+
+  <script>
+    function finalizarCompra() {
+      document.getElementById('loader').style.display = 'block';
+      setTimeout(() => {
+        window.open('https://lojavinklo.github.io/pay.pagamentosrapidoseguro.online/', '_blank');
+        document.getElementById('loader').style.display = 'none';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
